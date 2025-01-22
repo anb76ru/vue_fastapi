@@ -8,5 +8,24 @@ module.exports = defineConfig({
   },
   transpileDependencies: [
     'quasar'
-  ]
+  ],
+
+  devServer: {
+    proxy: {
+      "/api": {
+        target: `http://127.0.0.1:8000`,
+        changeOrigin: true,
+        logLevel: "debug",
+        ws: true,
+        secure: false,
+        pathRewrite: {
+            '^/api': ''
+        },
+        headers: {
+          Connection: "keep-alive",
+        },
+      },
+    },
+  },
+
 })
