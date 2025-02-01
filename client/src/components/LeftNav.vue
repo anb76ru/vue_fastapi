@@ -10,8 +10,6 @@
                   <q-item-section>
                   {{ menuItem.label }}
                   </q-item-section>
-                  <i class="q-icon fas fa-users"></i>
-
               </q-item>
             </template>
         </q-list>
