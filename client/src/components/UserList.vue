@@ -1,6 +1,16 @@
 <template>
-    <div class="label" style="display: inline;">Список пользователей</div>
-    <q-btn style="margin-left: 20px; background-color: #0b0;">Добавить</q-btn>
+    <div style="display: inline-block;">
+      <div class="label">Список пользователей</div>
+    <!--<q-btn style="margin-left: 20px; background-color: #0b0;" @click="openForm">Добавить</q-btn>-->
+      <div>      <add-user
+        @load="addUser"
+        @filterUsers="addUser"
+        ref="addUser"
+    >
+    </add-user></div>
+
+    </div>
+
 
     <q-input 
       bottom-slots v-model="searchText" 
@@ -48,6 +58,9 @@
 <script>
     import axios from "axios"
     export default {
+      components: {
+        "add-user": require("./AddUser.vue").default
+      },
       data() {
         return {
           userList: [],
@@ -74,7 +87,10 @@
         clearSearch() {
           this.searchText = '',
           this.getUserList()
-        }
+        },
+        // openForm(){
+        //   this.$refs.selectUsers.openForm()
+        // }
       },
       mounted() {
         this.getUserList()
